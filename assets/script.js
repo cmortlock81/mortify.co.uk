@@ -77,3 +77,14 @@ document.querySelectorAll('[data-filter]').forEach(button => {
   });
 });
 document.querySelector('[data-filter="all"]')?.classList.add('active');
+
+document.querySelectorAll('[data-blog-filter]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-blog-filter]').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    const filter = button.dataset.blogFilter;
+    document.querySelectorAll('.blog-grid [data-category]').forEach(card => {
+      card.hidden = filter !== 'all' && card.dataset.category !== filter;
+    });
+  });
+});
