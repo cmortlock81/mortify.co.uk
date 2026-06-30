@@ -1,13 +1,17 @@
 const toggle = document.querySelector('.nav-toggle');
-const nav = document.querySelector('.site-nav');
+const nav = document.querySelector('#siteNav') || document.querySelector('.site-nav');
+function setMenuState(open) {
+  if (!toggle || !nav) return;
+  nav.classList.toggle('open', open);
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(open));
+    setMenuState(!nav.classList.contains('open'));
   });
   nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
+    setMenuState(false);
   }));
 }
 
@@ -68,20 +72,30 @@ if (faqGrid) faqGrid.innerHTML = faqs.map(([q, a]) => `<details><summary>${q}</s
 
 document.querySelectorAll('[data-filter]').forEach(button => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('[data-filter]').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
     button.classList.add('active');
+    button.setAttribute('aria-pressed', 'true');
     const filter = button.dataset.filter;
     document.querySelectorAll('.portfolio-grid [data-category]').forEach(card => {
       card.hidden = filter !== 'all' && card.dataset.category !== filter;
     });
   });
 });
-document.querySelector('[data-filter="all"]')?.classList.add('active');
+const defaultPortfolioFilter = document.querySelector('[data-filter="all"]');
+defaultPortfolioFilter?.classList.add('active');
+defaultPortfolioFilter?.setAttribute('aria-pressed', 'true');
 
 document.querySelectorAll('[data-blog-filter]').forEach(button => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('[data-blog-filter]').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('[data-blog-filter]').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
     button.classList.add('active');
+    button.setAttribute('aria-pressed', 'true');
     const filter = button.dataset.blogFilter;
     document.querySelectorAll('.blog-grid [data-category]').forEach(card => {
       card.hidden = filter !== 'all' && card.dataset.category !== filter;
