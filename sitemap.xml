@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://mortify.co.uk/</loc></url>
+  <url><loc>https://mortify.co.uk/services/</loc></url>
+  <url><loc>https://mortify.co.uk/ai-assistants/</loc></url>
+  <url><loc>https://mortify.co.uk/pricing/</loc></url>
+  <url><loc>https://mortify.co.uk/work/</loc></url>
+  <url><loc>https://mortify.co.uk/support/</loc></url>
+  <url><loc>https://mortify.co.uk/contact/</loc></url>
+  <url><loc>https://mortify.co.uk/privacy/</loc></url>
   <url><loc>https://mortify.co.uk/blog/</loc></url>
   <url><loc>https://mortify.co.uk/blog/building-custom-software-that-fits-your-business/</loc></url>
   <url><loc>https://mortify.co.uk/blog/business-process-automation-explained/</loc></url>
